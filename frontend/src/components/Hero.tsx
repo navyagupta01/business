@@ -211,17 +211,26 @@ const Hero = () => {
     };
     animate();
 
-    // GSAP animations
-    const tl = gsap.timeline({ delay: 1 });
-    tl.fromTo(heroTextRef.current?.querySelector('h1'),
-      { y: 80, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.5, ease: "power3.out" }
-    )
-    .fromTo(heroTextRef.current?.querySelector('p'),
-      { y: 40, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: "power2.out" },
-      "-=0.8"
-    );
+    /// ✅ Fixed: Add null checks before GSAP animations
+const tl = gsap.timeline({ delay: 1 });
+
+const headingElement = heroTextRef.current?.querySelector('h1');
+if (headingElement) {
+  tl.fromTo(headingElement,
+    { y: 80, opacity: 0 },
+    { y: 0, opacity: 1, duration: 1.5, ease: "power3.out" }
+  );
+}
+
+const paragraphElement = heroTextRef.current?.querySelector('p');
+if (paragraphElement) {
+  tl.fromTo(paragraphElement,
+    { y: 40, opacity: 0 },
+    { y: 0, opacity: 1, duration: 1, ease: "power2.out" },
+    "-=0.8"
+  );
+}
+
 
     // Cleanup
     const onResize = () => {
@@ -362,3 +371,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
