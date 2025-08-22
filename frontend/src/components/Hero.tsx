@@ -29,8 +29,7 @@ const Hero = () => {
     currentMount.appendChild(renderer.domElement);
 
     // Create realistic barcode labels (MINDWARE's main product)
-    const barcodeLabels = [];
-
+    const barcodeLabels: string[] = [];
     for (let i = 0; i < 8; i++) {
       // Create label base (white background)
       const labelGeometry = new THREE.BoxGeometry(3, 1.5, 0.02);
@@ -353,3 +352,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
