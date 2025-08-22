@@ -122,7 +122,7 @@ const Hero = () => {
 
       // Add RFID antenna pattern
       const antennaGeometry = new THREE.TorusGeometry(0.25, 0.02, 8, 16);
-      const antennaMaterial = new THREE.MeshBasicMaterial({
+      const antennaMaterial = new THREE.MeshStandardMaterial({
         color: 0xffd700,
         emissive: 0xffd700,
         emissiveIntensity: 0.2
@@ -362,3 +362,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
