@@ -5,9 +5,9 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-  const sectionRef = useRef(null);
-  const statsRef = useRef([]);
-  const cardsRef = useRef([]);
+  const sectionRef = useRef<HTMLElement>(null);
+  const statsRef = useRef<(HTMLSpanElement | null)[]>([]);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -59,7 +59,9 @@ const About = () => {
                 start: 'top 80%',
               },
               onUpdate: function() {
-                stat.textContent = Math.ceil(stat.textContent);
+                if (stat.textContent !== null) {
+                  stat.textContent = Math.ceil(parseFloat(stat.textContent)).toString();
+                }
               }
             }
           );
@@ -117,7 +119,7 @@ const About = () => {
       background: 'linear-gradient(135deg, #dbeafe 0%, #e0e7ff 50%, #ffffff 100%)',
       position: 'relative',
       overflow: 'hidden',
-      padding: '4rem 0' // Reduced from default section padding
+      padding: '4rem 0'
     }}>
       {/* Animated background elements */}
       <div style={{
@@ -222,7 +224,7 @@ const About = () => {
                 textShadow: '0 2px 10px rgba(59, 130, 246, 0.3)'
               }}>
                 <span
-                  ref={el => statsRef.current[index] = el}
+                  ref={(el) => { statsRef.current[index] = el; }}
                   data-target={stat.number}
                 >
                   0
@@ -250,7 +252,7 @@ const About = () => {
           {values.map((value, index) => (
             <div
               key={index}
-              ref={el => cardsRef.current[index] = el}
+              ref={(el) => { cardsRef.current[index] = el; }}
               style={{
                 background: 'rgba(255,255,255,0.8)',
                 padding: '2rem',
