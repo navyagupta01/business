@@ -29,7 +29,7 @@ const Hero = () => {
     currentMount.appendChild(renderer.domElement);
 
     // Create realistic barcode labels (MINDWARE's main product)
-    const barcodeLabels: THREE.Mesh[] = []; // ✅ Fixed: Changed from string[] to THREE.Mesh[]
+    const barcodeLabels: THREE.Mesh[] = [];
     
     for (let i = 0; i < 8; i++) {
       // Create label base (white background)
@@ -53,7 +53,7 @@ const Hero = () => {
         Math.random() * 0.1
       );
 
-      barcodeLabels.push(label); // ✅ Now works correctly
+      barcodeLabels.push(label);
       scene.add(label);
 
       // Add actual barcode pattern to each label
@@ -90,16 +90,20 @@ const Hero = () => {
     }
 
     // Create RFID tags (another MINDWARE product)
-    const rfidTags: THREE.Mesh[] = []; // ✅ Fixed: Added proper typing
+    const rfidTags: THREE.Mesh[] = [];
     
     for (let i = 0; i < 5; i++) {
       const tagGeometry = new THREE.BoxGeometry(1.2, 0.8, 0.03);
-      const tagMaterial = new THREE.MeshPhongMaterial({
+      
+      // ✅ FIXED: Changed to MeshStandardMaterial for metalness support
+      const tagMaterial = new THREE.MeshStandardMaterial({
         color: 0x1e3c72, // MINDWARE blue
         metalness: 0.3,
+        roughness: 0.4,
         transparent: true,
         opacity: 0.9
       });
+      
       const tag = new THREE.Mesh(tagGeometry, tagMaterial);
 
       tag.position.set(
@@ -129,10 +133,14 @@ const Hero = () => {
 
       // Add central chip
       const chipGeometry = new THREE.BoxGeometry(0.15, 0.15, 0.01);
-      const chipMaterial = new THREE.MeshBasicMaterial({
+      
+      // ✅ FIXED: Changed to MeshStandardMaterial for metalness support
+      const chipMaterial = new THREE.MeshStandardMaterial({
         color: 0x333333,
-        metalness: 0.8
+        metalness: 0.8,
+        roughness: 0.2
       });
+      
       const chip = new THREE.Mesh(chipGeometry, chipMaterial);
       chip.position.set(0, 0, 0.025);
       tag.add(chip);
