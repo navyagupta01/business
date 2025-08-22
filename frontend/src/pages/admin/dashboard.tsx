@@ -90,15 +90,14 @@ const AdminDashboard = () => {
                 style={{
                   padding: '1rem 2rem',
                   borderRadius: '12px',
-                  border: 'none',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',  // ✅ Fixed: Single border property
                   fontWeight: '700',
                   background: 'rgba(255, 255, 255, 0.2)',
                   color: 'white',
                   fontSize: '1rem',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.3)'
+                  backdropFilter: 'blur(10px)'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)';
@@ -117,15 +116,14 @@ const AdminDashboard = () => {
                 style={{
                   padding: '1rem 2rem',
                   borderRadius: '12px',
-                  border: 'none',
+                  border: '1px solid rgba(0, 208, 132, 0.3)',  // ✅ Fixed: Single border property
                   fontWeight: '700',
                   background: 'rgba(0, 208, 132, 0.2)',
                   color: 'white',
                   fontSize: '1rem',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(0, 208, 132, 0.3)'
+                  backdropFilter: 'blur(10px)'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = 'rgba(0, 208, 132, 0.3)';
