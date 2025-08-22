@@ -63,13 +63,10 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <div style={{
+        <div className="desktop-nav" style={{
           display: 'flex',
           gap: '2.5rem',
-          alignItems: 'center',
-          '@media (max-width: 768px)': {
-            display: 'none'
-          }
+          alignItems: 'center'
         }}>
           {[
             { href: '#about', label: 'About' },
@@ -139,11 +136,8 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="mobile-menu-btn"
           style={{
-            display: 'none',
-            '@media (max-width: 768px)': {
-              display: 'block'
-            },
             background: 'none',
             border: 'none',
             color: 'white',
@@ -151,7 +145,6 @@ const Navbar = () => {
             cursor: 'pointer',
             padding: '0.5rem'
           }}
-          className="mobile-menu-btn"
         >
           {isMobileMenuOpen ? '✕' : '☰'}
         </button>
