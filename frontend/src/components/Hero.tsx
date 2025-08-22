@@ -197,10 +197,10 @@ const Hero = () => {
         tag.rotation.y -= 0.008;
         tag.position.y += Math.cos(elapsedTime * 0.6 + index * 0.4) * 0.008;
 
-        // Pulsing antenna
+        // ✅ FIXED: Pulsing antenna with proper type casting
         const antenna = tag.children[0];
-        if (antenna && antenna.material) {
-          (antenna.material as THREE.MeshBasicMaterial).emissiveIntensity = 0.2 + Math.sin(elapsedTime * 2 + index) * 0.3;
+        if (antenna && antenna instanceof THREE.Mesh && antenna.material) {
+          (antenna.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.2 + Math.sin(elapsedTime * 2 + index) * 0.3;
         }
       });
 
@@ -362,5 +362,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-
