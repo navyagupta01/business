@@ -171,7 +171,7 @@ const Sustainability = () => {
               {sustainabilityItems.map((item, index) => (
                 <div
                   key={index}
-                  ref={el => { itemsRef.current[index] = el; }}  {/* ✅ Fixed: Proper ref assignment */}
+                  ref={el => { itemsRef.current[index] = el; }}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -397,3 +397,4 @@ const Sustainability = () => {
 };
 
 export default Sustainability;
+
