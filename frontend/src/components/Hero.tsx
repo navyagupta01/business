@@ -8,7 +8,7 @@ const Hero = () => {
   const mountRef = useRef<HTMLDivElement>(null);
   const heroTextRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);
-  const router = useRouter(); // Add this line for clarity
+  const router = useRouter();
 
   useEffect(() => {
     setIsClient(true);
@@ -29,7 +29,8 @@ const Hero = () => {
     currentMount.appendChild(renderer.domElement);
 
     // Create realistic barcode labels (MINDWARE's main product)
-    const barcodeLabels: string[] = [];
+    const barcodeLabels: THREE.Mesh[] = []; // ✅ Fixed: Changed from string[] to THREE.Mesh[]
+    
     for (let i = 0; i < 8; i++) {
       // Create label base (white background)
       const labelGeometry = new THREE.BoxGeometry(3, 1.5, 0.02);
@@ -52,7 +53,7 @@ const Hero = () => {
         Math.random() * 0.1
       );
 
-      barcodeLabels.push(label);
+      barcodeLabels.push(label); // ✅ Now works correctly
       scene.add(label);
 
       // Add actual barcode pattern to each label
@@ -89,7 +90,8 @@ const Hero = () => {
     }
 
     // Create RFID tags (another MINDWARE product)
-    const rfidTags = [];
+    const rfidTags: THREE.Mesh[] = []; // ✅ Fixed: Added proper typing
+    
     for (let i = 0; i < 5; i++) {
       const tagGeometry = new THREE.BoxGeometry(1.2, 0.8, 0.03);
       const tagMaterial = new THREE.MeshPhongMaterial({
@@ -216,7 +218,7 @@ const Hero = () => {
     // Cleanup
     const onResize = () => {
       if (!currentMount) return;
-      camera.aspect = currentMount.clientWidth / currentMount.clientHeight; // Fixed: was clientWidth twice
+      camera.aspect = currentMount.clientWidth / currentMount.clientHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     };
@@ -352,4 +354,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
