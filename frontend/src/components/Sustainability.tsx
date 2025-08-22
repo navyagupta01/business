@@ -5,9 +5,9 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const Sustainability = () => {
-  const sectionRef = useRef(null);
-  const itemsRef = useRef([]);
-  const planetRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const itemsRef = useRef<(HTMLDivElement | null)[]>([]);  // ✅ Fixed: Proper TypeScript typing
+  const planetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -171,7 +171,7 @@ const Sustainability = () => {
               {sustainabilityItems.map((item, index) => (
                 <div
                   key={index}
-                  ref={el => itemsRef.current[index] = el}
+                  ref={el => { itemsRef.current[index] = el; }}  {/* ✅ Fixed: Proper ref assignment */}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
