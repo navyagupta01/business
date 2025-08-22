@@ -4,12 +4,23 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Careers = () => {
-  const sectionRef = useRef(null);
-  const cardsRef = useRef([]);
-  const ctaRef = useRef(null);
+// Define the Position interface
+interface Position {
+  title: string;
+  department: string;
+  location: string;
+  type: string;
+  icon: string;
+  color: string;
+  accent: string;
+}
 
-  const positions = [
+const Careers = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const ctaRef = useRef<HTMLDivElement>(null);
+
+  const positions: Position[] = [
     {
       title: 'Senior Frontend Developer',
       department: 'Engineering',
@@ -97,9 +108,11 @@ const Careers = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleApplyClick = (position) => {
+  const handleApplyClick = (position: Position) => {
     // You can implement actual application logic here
     console.log(`Applied for: ${position.title}`);
+    // Example: redirect to application form
+    // window.location.href = `/apply?position=${encodeURIComponent(position.title)}`;
   };
 
   return (
@@ -182,7 +195,7 @@ const Careers = () => {
           {positions.map((position, index) => (
             <div
               key={index}
-              ref={el => cardsRef.current[index] = el}
+              ref={(el) => { cardsRef.current[index] = el; }}
               style={{
                 background: 'rgba(255, 255, 255, 0.9)',
                 borderRadius: '24px',
