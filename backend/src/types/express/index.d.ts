@@ -1,14 +1,13 @@
-import { Request } from 'express';
+export {};
 
 declare global {
   namespace Express {
     interface Request {
       user?: {
-        id: string;
-        email: string;
+        id: number;           // Change from string to number
+        username: string;     // Change from email to username
         role: string;
       };
-      [key: string]: any;
     }
   }
 }
