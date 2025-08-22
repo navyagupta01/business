@@ -155,7 +155,7 @@ const Hero = () => {
 
     // Add printer details
     const screenGeometry = new THREE.BoxGeometry(0.8, 0.5, 0.02);
-    const screenMaterial = new THREE.MeshBasicMaterial({
+    const screenMaterial = new THREE.MeshStandardMaterial({
       color: 0x00ff00,
       emissive: 0x003300,
       emissiveIntensity: 0.5
@@ -362,4 +362,5 @@ const Hero = () => {
 };
 
 export default Hero;
+
 
