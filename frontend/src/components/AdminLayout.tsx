@@ -52,7 +52,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                     href={link.href}
                     className={isActive ? 'active' : ''}
                     style={{
-                      color: 'inherit',
+                      color: isActive ? '#1e3c72' : 'inherit', // ✅ Fixed: single color property
                       textDecoration: 'none',
                       fontWeight: '600',
                       fontSize: '1rem',
@@ -62,7 +62,6 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                       display: 'block',
                       transition: 'all 0.3s ease',
                       background: isActive ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
-                      color: isActive ? '#1e3c72' : 'inherit',
                       transform: isActive ? 'translateX(5px)' : 'translateX(0)',
                       boxShadow: isActive ? '0 4px 15px rgba(255, 255, 255, 0.3)' : 'none'
                     }}
